@@ -15,14 +15,15 @@ function App() {
     setTodo([...todo, inputValue]);
     setInputValue("");
   };
+  const deleteItem = (ind) => {
+    const newToDO = todo.filter((item, id) => id !== ind);
+    setTodo(newToDO);
+  };
 
   return (
-    <>
+    <div>
       <h1>CRUD APP</h1>
-      <div
-        
-        style={{ display: "flex", alignItems: "center", gap: "10px" }}
-      >
+      <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <input
           type="text"
           value={inputValue}
@@ -35,12 +36,24 @@ function App() {
           onClick={addToDo}
         />
       </div>
+
+   
       <ul>
         {todo.map((todoq, index) => {
-          return <li key={index}>{todoq}</li>;
+          return (
+            <li key={index}>
+              {todoq}  <Button
+              name="Delete"
+              style={{ backgroundColor: "red" }}
+              onClick={() => deleteItem(index)}
+            />
+             
+            </li>
+          );
         })}
       </ul>
-    </>
+      
+    </div>
   );
 }
 
