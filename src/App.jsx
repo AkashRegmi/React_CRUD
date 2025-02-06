@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "./component/Button";
 
 function App() {
-  const [todo, setTodo] = useState([]);
+  const [todo, setTodo] = useState(() => {
+    return JSON.parse(localStorage.getItem("todo")) ?? [];
+  });
+  
   const [inputValue, setInputValue] = useState("");
   const [indexToBeEdited, setIndexToBeEdited] = useState(null);
 
@@ -37,6 +40,24 @@ function App() {
     setIndexToBeEdited(null); // Exit edit mode
     setInputValue(""); // Clear input field
   };
+
+
+  // useEffect(() => {
+  //   const storedTodos = JSON.parse(localStorage.getItem("todo"));
+  //   if (Array.isArray(storedTodos)) {
+  //     setTodo(storedTodos);
+  //   }
+  // }, []);
+
+  useEffect(()=>{
+    localStorage.setItem("todo", JSON.stringify(todo));
+  },[todo]);
+
+ 
+
+ 
+
+  
 
   return (
     <>
