@@ -25,6 +25,7 @@ function App() {
   };
 
   const handleEdit = (index) => {
+    console.log(index);
     setIndexToBeEdited(index); // Store the index of the item to be edited
     setInputValue(todo[index]); // Move the existing value into input
   };
